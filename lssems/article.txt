@@ -1,0 +1,50 @@
+Project: Local Service Search Engine Management System using PHP/MySQLi
+
+About
+The Local Service Search Engine Management System is a simple PHP/MySQLi project that can help local Freelancers workers, Companies, or small business that provides services. This system store the details and information of the on-call workers or Freelancers and Companies so when the people or company needed service for any type of services they needs can simply search from the website that is available or can give service in their area. The system is a simple project that provides people or other company needs a service or to do work for them temporarily, this system can also help freelancers or small business to market their skills by making their information more attractive to the persons or companies who are looking a temporary worker with a certain skill. The system has 2 sides of User Interface which are the Administrator Side and the User Side. The Administrator Side is the side of the system that manages the data or information for the website and the User Side is the system side that serves as the website which displays all the data of the system for the website visitors.
+
+Features
+Admin Side
+Login Page
+The page where the admin user submits their system credentials to access the admin side of the system.
+Home Page
+The page where the admin user is being redirected by default after logging into the system.
+Services Page
+The page where the admin user creates a new service category and manages the list.
+Areas Page
+The page where local areas are listed and managed.
+New Person/Company Page
+The page where the admin user adds a new Freelance or Company/Small Businesses along with their contact information and service description they/he/she can provide to their possible clients.
+Persons/Companies List Page
+The page where all the Freelancers, Company, and Small Businesses that stored in the system are listed and navigate to edit, view, and delete.
+Settings About Page 
+The page where the "About Page Content" is being managed.
+System Settings Page
+The page where the admin manages the website name, cover photo, address, and contact details.
+Users Side
+Home Page
+The page where the users or website visitors will be redirected by default when browsing the website. This also the page where the search persons or companies that are available to give service in a specific area are listed.
+Services Page
+The page where the list of service categories are listed.
+About Page
+The page where the "About Us Content" of the website is being displayed.
+Contact Us Page
+The page where the Website Owner or management contact details is being displayed.
+The Local Service Search Engine Management System was developed using HTML, PHP/MySQLi, CSS, JavaScript (jQuery/Ajax), and Bootstrap for the design. The source code is fully functional and easy to modify or enhance. Follow the instruction below to have an actual experience using this simple project.
+
+How to Run
+Download the source code and extract the zip file.
+Download or set up any local web server that runs PHP script.
+Open the web-server database and create a new database name it lssems_db.
+Import the SQL file located in the database folder of the source code.
+Copy and paste the source code to the location where your local web server accessing your local projects. Example for XAMPP('C:\xampp\htdocs')
+Open a web browser and browse the project. E.g [http://localhost/lssems] for the user's side and [http://localhost/lssems/admin] for the admin side.
+Default Admin Access
+Username: admin
+Password: admin123
+
+I hope this simple Local Service Search Engine Management System will help you with what you are looking for, feel free to download and modify the source code.
+
+Explore more on this website for more source codes and tutorials.
+
+Enjoy!
