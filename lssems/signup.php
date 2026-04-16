@@ -24,7 +24,7 @@ if(isset($_SESSION['login_id'])){
 <head>
 <style>
 body {
-  background: linear-gradient(135deg, #0a0c10 0%, #14181f 100%);
+  background: linear-gradient(135deg, #f0f4ff 0%, #14181f 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
 }
@@ -33,7 +33,7 @@ body::before {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -50,7 +50,7 @@ body::before {
 .signup-card {
   background: rgba(26, 30, 36, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 24px;
   width: 100%;
   max-width: 700px;
@@ -67,7 +67,7 @@ body::before {
   content: '';
   display: block;
   height: 3px;
-  background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
+  background: linear-gradient(90deg, #4f46e5, #6366f1, #4f46e5);
   background-size: 200% 100%;
   animation: shimmer 3s ease-in-out infinite;
 }
@@ -84,13 +84,13 @@ body::before {
 .signup-logo-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #dc2626, #ef4444);
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
   border-radius: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
-  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
 }
 .signup-logo-icon i {
   font-size: 26px;
@@ -101,11 +101,11 @@ body::before {
   font-family: 'Inter', sans-serif;
   font-size: 22px;
   font-weight: 700;
-  color: #f3f4f6;
+  color: #1e293b;
   margin-bottom: 4px;
 }
 .signup-header p {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 14px;
 }
 
@@ -115,20 +115,20 @@ body::before {
 
 .signup-body .form-control {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 10px;
-  color: #f3f4f6;
+  color: #1e293b;
   padding: 10px 14px;
   font-size: 14px;
   transition: all 0.2s ease;
 }
 .signup-body .form-control:focus {
-  border-color: #dc2626;
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
   background: rgba(255, 255, 255, 0.08);
 }
 .signup-body .form-control::placeholder {
-  color: #6b7280;
+  color: #94a3b8;
 }
 
 .signup-body textarea.form-control {
@@ -136,7 +136,7 @@ body::before {
 }
 
 .signup-section-label {
-  color: #ef4444;
+  color: #6366f1;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -146,7 +146,7 @@ body::before {
 }
 
 .signup-divider {
-  border-left: 1px solid rgba(220, 38, 38, 0.15);
+  border-left: 1px solid rgba(79, 70, 229, 0.15);
 }
 
 .input-icon-group {
@@ -160,13 +160,13 @@ body::before {
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #ef4444;
+  color: #6366f1;
   font-size: 13px;
   z-index: 2;
 }
 
 .btn-signup {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
   border: none;
   color: #fff;
   padding: 10px 28px;
@@ -174,12 +174,12 @@ body::before {
   font-weight: 600;
   font-size: 15px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
 }
 .btn-signup:hover {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
   color: #fff;
 }
 
@@ -188,7 +188,7 @@ body::before {
   text-align: center;
 }
 .signup-footer a {
-  color: #ef4444;
+  color: #6366f1;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -198,11 +198,11 @@ body::before {
 }
 
 .icheck-primary label {
-  color: #d1d5db;
+  color: #64748b;
   font-size: 13px;
 }
 .icheck-primary label a {
-  color: #ef4444;
+  color: #6366f1;
 }
 
 #msg .alert {
@@ -216,7 +216,7 @@ body::before {
 
 @media (max-width: 768px) {
   .signup-body { padding: 8px 20px 24px; }
-  .signup-divider { border-left: none; border-top: 1px solid rgba(220,38,38,0.15); padding-top: 12px; margin-top: 4px; }
+  .signup-divider { border-left: none; border-top: 1px solid rgba(79,70,229,0.15); padding-top: 12px; margin-top: 4px; }
 }
 </style>
 </head>
@@ -276,7 +276,7 @@ body::before {
               <input type="password" class="form-control" name="password" <?php echo isset($id) ? '' : "required" ?> placeholder="Password">
             </div>
             <?php if(isset($id)): ?>
-            <small style="color:#9ca3af;font-size:12px;"><i>Leave blank if you don't want to change your password.</i></small>
+            <small style="color:#94a3b8;font-size:12px;"><i>Leave blank if you don't want to change your password.</i></small>
             <?php endif; ?>
 
             <div class="input-icon-group mb-3">

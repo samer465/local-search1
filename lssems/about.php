@@ -4,10 +4,10 @@
   <!-- Page Header -->
   <div class="text-center mb-5">
     <h2 class="about-heading">
-      <i class="fas fa-info-circle" style="color:#dc2626;"></i> About Us
+      <i class="fas fa-info-circle" style="color:#4f46e5;"></i> About Us
     </h2>
     <p class="about-subtitle">Learn more about our platform and mission</p>
-    <div style="width:60px;height:3px;background:#dc2626;margin:12px auto 0;border-radius:2px;"></div>
+    <div style="width:60px;height:3px;background:#4f46e5;margin:12px auto 0;border-radius:2px;"></div>
   </div>
 
   <div class="row justify-content-center">
@@ -63,16 +63,16 @@
   font-family: 'Inter', sans-serif;
   font-size: 28px;
   font-weight: 800;
-  color: #f3f4f6;
+  color: #1e293b;
 }
 .about-subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 15px;
   margin-top: 8px;
 }
 .about-card {
-  background: #1a1e24;
-  border: 1px solid rgba(220, 38, 38, 0.15);
+  background: #ffffff;
+  border: 1px solid rgba(79, 70, 229, 0.15);
   border-radius: 16px;
   overflow: hidden;
 }
@@ -82,18 +82,18 @@
 .about-section-title {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  color: #ef4444;
+  color: #6366f1;
   font-size: 18px;
   margin-bottom: 16px;
 }
 .about-text {
-  color: #d1d5db;
+  color: #64748b;
   font-size: 14px;
   line-height: 1.8;
   margin-bottom: 20px;
 }
 .about-content-html {
-  color: #d1d5db;
+  color: #64748b;
   font-size: 14px;
   line-height: 1.8;
 }
@@ -104,23 +104,23 @@
   margin: 12px 0;
 }
 .about-info-card {
-  background: #1a1e24;
-  border: 1px solid rgba(220, 38, 38, 0.15);
+  background: #ffffff;
+  border: 1px solid rgba(79, 70, 229, 0.15);
   border-radius: 16px;
   padding: 24px 20px;
   text-align: center;
   transition: all 0.3s ease;
 }
 .about-info-card:hover {
-  border-color: rgba(220, 38, 38, 0.4);
+  border-color: rgba(79, 70, 229, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.06);
 }
 .about-info-icon {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, rgba(220,38,38,0.15), rgba(220,38,38,0.08));
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(79,70,229,0.08));
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -129,17 +129,17 @@
 }
 .about-info-icon i {
   font-size: 22px;
-  color: #ef4444;
+  color: #6366f1;
 }
 .about-info-card h5 {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 15px;
-  color: #f3f4f6;
+  color: #1e293b;
   margin-bottom: 8px;
 }
 .about-info-card p {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 13px;
   line-height: 1.6;
   margin-bottom: 0;

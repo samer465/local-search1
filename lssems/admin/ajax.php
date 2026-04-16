@@ -97,5 +97,49 @@ if($action == 'find_sp'){
 	if($get)
 		echo $get;
 }
+if($action == 'forgot_password'){
+	$res = $crud->forgot_password();
+	if($res) echo $res;
+}
+if($action == 'reset_password'){
+	$res = $crud->reset_password();
+	if($res) echo $res;
+}
+if($action == 'send_message'){
+	$res = $crud->send_message();
+	if($res) echo $res;
+}
+if($action == 'get_message'){
+	$res = $crud->get_message();
+	if($res) echo $res;
+}
+if($action == 'reply_message'){
+	$res = $crud->reply_message();
+	if($res) echo $res;
+}
+if($action == 'delete_message'){
+	$res = $crud->delete_message();
+	if($res) echo $res;
+}
+if($action == 'save_booking'){
+	$res = $crud->save_booking();
+	if($res) echo $res;
+}
+if($action == 'get_bookings'){
+	$res = $crud->get_bookings();
+	if($res) echo $res;
+}
+if($action == 'save_review'){
+	$res = $crud->save_review();
+	if($res) echo $res;
+}
+if($action == 'get_reviews'){
+	$res = $crud->get_reviews();
+	if($res) echo $res;
+}
+if($action == 'get_cart_count'){
+	$res = $crud->get_cart_count();
+	if($res) echo $res;
+}
 ob_end_flush();
 ?>

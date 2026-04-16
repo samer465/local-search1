@@ -114,7 +114,7 @@
 }
 .hero-subtitle {
   font-size: 16px;
-  color: #9ca3af;
+  color: #94a3b8;
   margin-bottom: 36px;
   max-width: 500px;
   margin-left: auto;
@@ -129,16 +129,16 @@
 .search-card-inner {
   background: rgba(26, 30, 36, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(220, 38, 38, 0.25);
+  border: 1px solid rgba(79, 70, 229, 0.25);
   border-radius: 16px;
   padding: 24px 28px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(79,70,229,0.08);
 }
 .search-label {
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: #ef4444;
+  color: #6366f1;
   margin-bottom: 6px;
   text-align: left;
   text-transform: uppercase;
@@ -148,7 +148,7 @@
   margin-right: 4px;
 }
 .btn-search-hero {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -156,18 +156,18 @@
   font-weight: 600;
   font-size: 15px;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
 }
 .btn-search-hero:hover {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
   color: #fff;
 }
 
 /* Results Section */
 .results-title {
-  color: #ef4444;
+  color: #6366f1;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -175,19 +175,19 @@
 
 /* Service Provider Cards */
 .sp-card {
-  background: #1a1e24;
-  border: 1px solid rgba(220, 38, 38, 0.15);
+  background: #ffffff;
+  border: 1px solid rgba(79, 70, 229, 0.15);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .sp-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(220, 38, 38, 0.5);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  border-color: rgba(79, 70, 229, 0.5);
+  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.08);
 }
 .sp-card-header {
-  background: linear-gradient(135deg, #1f242c 0%, #111827 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   padding: 24px 20px 36px;
   text-align: center;
   position: relative;
@@ -198,8 +198,8 @@
   margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #dc2626;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+  border: 3px solid #4f46e5;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
 .sp-card-avatar .sp-img {
   width: 100%;
@@ -211,7 +211,7 @@
   text-align: center;
 }
 .sp-card-body .sp-name {
-  color: #f3f4f6;
+  color: #1e293b;
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 4px;
@@ -219,8 +219,8 @@
 }
 .sp-card-body .sp-c {
   display: inline-block;
-  background: rgba(220, 38, 38, 0.12);
-  color: #ef4444;
+  background: rgba(79, 70, 229, 0.12);
+  color: #6366f1;
   font-size: 11px;
   font-weight: 600;
   padding: 3px 10px;
@@ -231,16 +231,16 @@
 .sp-card-footer {
   padding: 10px 20px 16px;
   text-align: center;
-  border-top: 1px solid rgba(220, 38, 38, 0.1);
+  border-top: 1px solid rgba(79, 70, 229, 0.1);
 }
 .sp-view-btn {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 12px;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 .sp-card:hover .sp-view-btn {
-  color: #ef4444;
+  color: #6366f1;
 }
 
 /* No Results State */
@@ -248,7 +248,7 @@
   padding: 40px 20px;
 }
 #ns b {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 16px;
 }
 
@@ -297,7 +297,7 @@ function load_sp(){
       if(typeof (JSON.parse(resp)) === 'object'){
         resp = JSON.parse(resp);
         if(resp.length <= 0){
-          $('#sp-list').html('<div class="col-12 text-center py-5" id="ns"><i class="fas fa-search fa-3x mb-3" style="color:#374151;"></i><br><b>No results found. Try a different search.</b></div>');
+          $('#sp-list').html('<div class="col-12 text-center py-5" id="ns"><i class="fas fa-search fa-3x mb-3" style="color:#e2e8f0;"></i><br><b>No results found. Try a different search.</b></div>');
         } else {
           $('#sp-list').html('');
           Object.keys(resp).map(function(k){

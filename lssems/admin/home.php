@@ -30,7 +30,7 @@
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #c0392b, #e74c3c);
+        background: linear-gradient(90deg, #4f46e5, #6366f1);
         transform: scaleX(0);
         transition: transform 0.3s ease;
     }
@@ -61,7 +61,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #c0392b, #e74c3c);
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
     }
     
     .stat-icon i {
@@ -133,7 +133,7 @@
     }
     
     .chart-title i {
-        color: #c0392b;
+        color: #4f46e5;
         margin-right: 8px;
     }
     
@@ -177,7 +177,7 @@
         width: 40px;
         height: 40px;
         border-radius: 12px;
-        background: linear-gradient(135deg, #c0392b, #e74c3c);
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -276,7 +276,7 @@
     
     .action-btn:hover {
         transform: translateY(-5px);
-        background: linear-gradient(135deg, #c0392b, #e74c3c);
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
         text-decoration: none;
     }
     
@@ -303,7 +303,7 @@
     
     .action-icon i {
         font-size: 24px;
-        color: #c0392b;
+        color: #4f46e5;
         transition: all 0.3s ease;
     }
     
@@ -586,11 +586,11 @@
                 datasets: [{
                     label: 'Providers',
                     data: [12, 19, 15, 25, 22, 30, 35, 40, 45, 52, 58, 65],
-                    borderColor: '#c0392b',
+                    borderColor: '#4f46e5',
                     backgroundColor: 'rgba(192, 57, 43, 0.1)',
                     tension: 0.4,
                     fill: true,
-                    pointBackgroundColor: '#c0392b',
+                    pointBackgroundColor: '#4f46e5',
                     pointBorderColor: '#fff',
                     pointRadius: 5,
                     pointHoverRadius: 7
@@ -636,7 +636,7 @@
                         <?php echo $conn->query("SELECT * FROM persons_companies WHERE type = 1")->num_rows; ?>,
                         <?php echo $conn->query("SELECT * FROM persons_companies WHERE type = 2")->num_rows; ?>
                     ],
-                    backgroundColor: ['#c0392b', '#e74c3c'],
+                    backgroundColor: ['#4f46e5', '#6366f1'],
                     borderWidth: 0,
                     hoverOffset: 10
                 }]

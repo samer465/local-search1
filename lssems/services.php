@@ -4,10 +4,10 @@
   <!-- Page Header -->
   <div class="text-center mb-4">
     <h2 class="section-heading">
-      <i class="fas fa-concierge-bell" style="color:#dc2626;"></i> Our Services
+      <i class="fas fa-concierge-bell" style="color:#4f46e5;"></i> Our Services
     </h2>
     <p class="section-desc">Browse our service categories to find what you need</p>
-    <div style="width:60px;height:3px;background:#dc2626;margin:12px auto 0;border-radius:2px;"></div>
+    <div style="width:60px;height:3px;background:#4f46e5;margin:12px auto 0;border-radius:2px;"></div>
   </div>
 
   <!-- Search Bar -->
@@ -15,7 +15,7 @@
     <div class="service-search-wrapper">
       <div class="input-group">
         <span class="input-group-prepend">
-          <span class="input-group-text" style="background:#1f242c;border:1px solid rgba(220,38,38,0.3);border-right:none;border-radius:10px 0 0 10px;color:#ef4444;">
+          <span class="input-group-text" style="background:#f8fafc;border:1px solid rgba(79,70,229,0.3);border-right:none;border-radius:10px 0 0 10px;color:#6366f1;">
             <i class="fas fa-search"></i>
           </span>
         </span>
@@ -67,11 +67,11 @@
   font-family: 'Inter', sans-serif;
   font-size: 28px;
   font-weight: 800;
-  color: #f3f4f6;
+  color: #1e293b;
   letter-spacing: -0.3px;
 }
 .section-desc {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 15px;
   margin-top: 8px;
 }
@@ -80,8 +80,8 @@
   max-width: 420px;
 }
 .service-card {
-  background: #1a1e24;
-  border: 1px solid rgba(220, 38, 38, 0.15);
+  background: #ffffff;
+  border: 1px solid rgba(79, 70, 229, 0.15);
   border-radius: 16px;
   padding: 28px 24px 20px;
   text-align: center;
@@ -93,14 +93,14 @@
 }
 .service-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(220, 38, 38, 0.5);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  border-color: rgba(79, 70, 229, 0.5);
+  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.06);
 }
 .service-card-icon {
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, rgba(220,38,38,0.15), rgba(220,38,38,0.08));
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(79,70,229,0.08));
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -109,13 +109,13 @@
   transition: all 0.3s ease;
 }
 .service-card:hover .service-card-icon {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  border-color: #dc2626;
-  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  border-color: #4f46e5;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
 }
 .service-card-icon i {
   font-size: 26px;
-  color: #ef4444;
+  color: #6366f1;
   transition: color 0.3s ease;
 }
 .service-card:hover .service-card-icon i {
@@ -125,11 +125,11 @@
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 700;
-  color: #f3f4f6;
+  color: #1e293b;
   margin-bottom: 8px;
 }
 .service-card-desc {
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 13px;
   line-height: 1.6;
   flex-grow: 1;
@@ -137,10 +137,10 @@
 }
 .service-card-action {
   padding-top: 12px;
-  border-top: 1px solid rgba(220, 38, 38, 0.1);
+  border-top: 1px solid rgba(79, 70, 229, 0.1);
 }
 .service-learn-more {
-  color: #ef4444;
+  color: #6366f1;
   font-size: 13px;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -179,7 +179,7 @@ function check_list(){
   if(count > 0){
     if($('#ns').length > 0) $('#ns').remove();
   } else {
-    var ns = $('<div class="col-12 text-center py-5" id="ns"><i class="fas fa-search fa-3x mb-3" style="color:#374151;"></i><br><b style="color:#9ca3af;">No services match your search.</b></div>');
+    var ns = $('<div class="col-12 text-center py-5" id="ns"><i class="fas fa-search fa-3x mb-3" style="color:#e2e8f0;"></i><br><b style="color:#94a3b8;">No services match your search.</b></div>');
     $('#service-list').append(ns);
   }
 }

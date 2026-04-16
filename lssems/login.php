@@ -2,588 +2,485 @@
 <html lang="en">
 <?php session_start() ?>
 <?php 
-  if(!isset($_SESSION['login_id']))
-  header('location:login.php');
  include 'admin/db_connect.php';
-    ob_start();
-  if(!isset($_SESSION['system'])){
-
-    $system = $conn->query("SELECT * FROM system_settings")->fetch_array();
-    foreach($system as $k => $v){
-      $_SESSION['system'][$k] = $v;
-    }
-  }
-  ob_end_flush();
-  include 'header.php' ;
+ ob_start();
+ if(!isset($_SESSION['system'])){
+   $system = $conn->query("SELECT * FROM system_settings")->fetch_array();
+   foreach($system as $k => $v){
+     $_SESSION['system'][$k] = $v;
+   }
+ }
+ ob_end_flush();
+ if(isset($_SESSION['login_id']))
+   header("location:index.php?page=home");
 ?>
 <head>
-    <style>
-        /* Professional Login Page - Red & Black Theme */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            font-family: 'Poppins', 'Segoe UI', 'Source Sans Pro', sans-serif;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        /* Animated Background Effect */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(192, 57, 43, 0.15) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        body::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 80% 80%, rgba(192, 57, 43, 0.1) 0%, transparent 50%);
-            animation: pulse 10s ease-in-out infinite reverse;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.05); }
-        }
-        
-        /* Login Container */
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-        }
-        
-        /* Login Card */
-        .login-card {
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 450px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(192, 57, 43, 0.3);
-            animation: slideUp 0.6s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Red Top Border Animation */
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #c0392b, #e74c3c, #c0392b);
-            background-size: 200% 100%;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        
-        @keyframes shimmer {
-            0%, 100% { background-position: -200% 0; }
-            50% { background-position: 200% 0; }
-        }
-        
-        /* Logo Section */
-        .login-logo {
-            text-align: center;
-            padding: 40px 30px 20px;
-            position: relative;
-        }
-        
-        .logo-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            animation: bounce 2s ease-in-out infinite;
-            box-shadow: 0 10px 25px rgba(192, 57, 43, 0.3);
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
-        .logo-icon i {
-            font-size: 40px;
-            color: white;
-        }
-        
-        .login-logo a {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-        
-        .login-subtitle {
-            text-align: center;
-            color: #888;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-        
-        /* Card Body */
-        .login-card-body {
-            padding: 20px 40px 40px;
-        }
-        
-        /* Form Groups */
-        .input-group {
-            position: relative;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 14px 45px 14px 45px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(192, 57, 43, 0.3);
-            border-radius: 12px;
-            font-size: 14px;
-            color: white;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-        
-        .form-control:focus {
-            border-color: #c0392b;
-            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .form-control::placeholder {
-            color: #888;
-        }
-        
-        .input-group-text {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: #c0392b;
-            padding: 0;
-            z-index: 1;
-        }
-        
-        .input-group-text i {
-            font-size: 18px;
-        }
-        
-        /* Password Toggle */
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #888;
-            transition: color 0.3s ease;
-            z-index: 1;
-        }
-        
-        .password-toggle:hover {
-            color: #c0392b;
-        }
-        
-        /* Remember Me Row */
-        .row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .icheck-primary {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .icheck-primary input {
-            margin-right: 8px;
-            cursor: pointer;
-            accent-color: #c0392b;
-            width: 16px;
-            height: 16px;
-        }
-        
-        .icheck-primary label {
-            color: #aaa;
-            font-size: 13px;
-            cursor: pointer;
-            margin: 0;
-        }
-        
-        .forgot-link {
-            color: #c0392b;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s ease;
-        }
-        
-        .forgot-link:hover {
-            color: #e74c3c;
-            text-decoration: underline;
-        }
-        
-        /* Login Button */
-        .btn-login {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
-        }
-        
-        .btn-login:active {
-            transform: translateY(0);
-        }
-        
-        .btn-login i {
-            font-size: 16px;
-        }
-        
-        /* Loading State */
-        .btn-login.loading {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Alert Messages */
-        .alert {
-            padding: 12px 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: shake 0.5s ease;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        .alert-danger {
-            background: rgba(220, 53, 69, 0.2);
-            border-left: 3px solid #dc3545;
-            color: #ff6b6b;
-        }
-        
-        .alert-danger i {
-            color: #dc3545;
-        }
-        
-        .alert-success {
-            background: rgba(40, 167, 69, 0.2);
-            border-left: 3px solid #28a745;
-            color: #6bff6b;
-        }
-        
-        /* Footer */
-        .login-footer {
-            text-align: center;
-            padding: 20px 30px 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .login-footer p {
-            color: #666;
-            font-size: 12px;
-            margin: 0;
-        }
-        
-        .login-footer a {
-            color: #c0392b;
-            text-decoration: none;
-        }
-        
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .login-card {
-                max-width: 95%;
-            }
-            
-            .login-card-body {
-                padding: 20px 25px 35px;
-            }
-            
-            .login-logo {
-                padding: 30px 20px 15px;
-            }
-            
-            .login-logo a {
-                font-size: 24px;
-            }
-            
-            .logo-icon {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .logo-icon i {
-                font-size: 35px;
-            }
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #c0392b;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #e74c3c;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | <?php echo $_SESSION['system']['name'] ?></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+  <script src="assets/plugins/jquery/jquery.min.js"></script>
+  <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 50%, #f5f7ff 100%);
+      min-height: 100vh;
+    }
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(79, 70, 229, 0.1), 0 2px 10px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 460px;
+      overflow: hidden;
+      animation: slideUp 0.5s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .login-header {
+      text-align: center;
+      padding: 36px 30px 20px;
+    }
+    .logo-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    }
+    .logo-icon span {
+      font-size: 28px; font-weight: 800; color: #fff;
+    }
+    .login-header h2 {
+      font-size: 22px; font-weight: 700; color: #1e293b; margin-bottom: 4px;
+    }
+    .login-header p {
+      font-size: 13px; color: #94a3b8;
+    }
+
+    /* Tabs */
+    .login-tabs {
+      display: flex;
+      border-bottom: 2px solid #e2e8f0;
+      margin: 0 28px;
+    }
+    .login-tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s ease;
+    }
+    .login-tab:hover { color: #4f46e5; }
+    .login-tab.active {
+      color: #4f46e5;
+      border-bottom-color: #4f46e5;
+    }
+
+    /* Tab Panels */
+    .tab-panel { display: none; padding: 24px 28px 28px; }
+    .tab-panel.active { display: block; }
+
+    /* Form Styles */
+    .form-label {
+      font-size: 12px; font-weight: 700; color: #475569;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 6px; display: block;
+    }
+    .input-group-custom {
+      position: relative; margin-bottom: 18px;
+    }
+    .input-group-custom .form-control {
+      padding: 11px 14px 11px 40px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #1e293b;
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    .input-group-custom .form-control:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      background: #fff;
+      outline: none;
+    }
+    .input-group-custom .form-control::placeholder { color: #94a3b8; }
+    .input-group-custom .input-icon {
+      position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+      color: #94a3b8; font-size: 14px; z-index: 2;
+    }
+    .input-group-custom .toggle-pass {
+      position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+      color: #94a3b8; cursor: pointer; font-size: 14px; z-index: 2;
+    }
+    .input-group-custom .toggle-pass:hover { color: #4f46e5; }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-login:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+    }
+    .btn-login:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+    .form-links {
+      text-align: center; margin-top: 16px; font-size: 13px; color: #94a3b8;
+    }
+    .form-links a {
+      color: #4f46e5; font-weight: 600; text-decoration: none;
+    }
+    .form-links a:hover { text-decoration: underline; }
+
+    .remember-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 18px; font-size: 13px;
+    }
+    .remember-row label { color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .remember-row label input { accent-color: #4f46e5; }
+    .remember-row a { color: #4f46e5; text-decoration: none; font-weight: 500; }
+    .remember-row a:hover { text-decoration: underline; }
+
+    .alert-custom {
+      padding: 10px 14px; border-radius: 10px; font-size: 13px;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+    }
+    .alert-danger-custom { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
+    .alert-success-custom { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; }
+
+    /* Signup form columns */
+    .signup-cols { display: flex; gap: 16px; }
+    .signup-cols .signup-col { flex: 1; }
+    @media (max-width: 576px) { .signup-cols { flex-direction: column; gap: 0; } }
+
+    .login-footer {
+      text-align: center; padding: 16px 28px 24px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .login-footer p { color: #94a3b8; font-size: 12px; margin: 0; }
+
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-logo">
-                <div class="logo-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <a href="#"><b><?php echo $_SESSION['system']['name'] ?></b></a>
-                <div class="login-subtitle">Admin Access Portal</div>
-            </div>
-            
-            <div class="login-card-body">
-                <form action="" id="login-form">
-                    <div id="alert-message"></div>
-                    
-                    <div class="input-group">
-                        <span class="input-group-text">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                        <input type="email" class="form-control" name="email" required placeholder="Email Address">
-                    </div>
-                    
-                    <div class="input-group">
-                        <span class="input-group-text">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                        <input type="password" class="form-control" name="password" id="password" required placeholder="Password">
-                        <span class="password-toggle" onclick="togglePassword()">
-                            <i class="fas fa-eye"></i>
-                        </span>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">Remember Me</label>
-                            </div>
-                        </div>
-                        <div class="col-4 text-right">
-                            <a href="#" class="forgot-link">Forgot Password?</a>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn-login" id="loginBtn">
-                        <i class="fas fa-sign-in-alt"></i> Sign In
-                    </button>
-                </form>
-            </div>
-            
-            <div class="login-footer">
-                <p>&copy; <?php echo date('Y'); ?> <?php echo $_SESSION['system']['name']; ?> - All Rights Reserved</p>
-                <p>Secure Admin Access</p>
-            </div>
-        </div>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-icon"><span>L</span></div>
+      <h2><?php echo $_SESSION['system']['name'] ?></h2>
+      <p>Secure sign in for users and administrators.</p>
     </div>
 
-    <script>
-        // Toggle password visibility
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
-        }
-        
-        $(document).ready(function(){
-            $('#login-form').submit(function(e){
-                e.preventDefault();
-                
-                const $btn = $('#loginBtn');
-                const $alert = $('#alert-message');
-                
-                // Clear previous alerts
-                $alert.html('');
-                
-                // Validate inputs
-                const email = $('input[name="email"]').val().trim();
-                const password = $('input[name="password"]').val().trim();
-                
-                if(!email) {
-                    $alert.html('<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Please enter your email address</div>');
-                    $('input[name="email"]').focus();
-                    return false;
-                }
-                
-                if(!password) {
-                    $alert.html('<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Please enter your password</div>');
-                    $('input[name="password"]').focus();
-                    return false;
-                }
-                
-                // Show loading state
-                $btn.html('<span class="spinner"></span> Signing In...').addClass('loading');
-                $btn.prop('disabled', true);
-                
-                $.ajax({
-                    url: 'admin/ajax.php?action=login2',
-                    method: 'POST',
-                    data: $(this).serialize(),
-                    error: function(err){
-                        console.log(err);
-                        $alert.html('<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Connection error. Please try again.</div>');
-                        $btn.html('<i class="fas fa-sign-in-alt"></i> Sign In').removeClass('loading');
-                        $btn.prop('disabled', false);
-                    },
-                    success: function(resp){
-                        if(resp == 1){
-                            // Success - redirect to dashboard
-                            $btn.html('<i class="fas fa-check-circle"></i> Success! Redirecting...');
-                            setTimeout(function(){
-                                location.href = 'index.php?page=home';
-                            }, 500);
-                        } else {
-                            $alert.html('<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Invalid email or password. Please try again.</div>');
-                            $btn.html('<i class="fas fa-sign-in-alt"></i> Sign In').removeClass('loading');
-                            $btn.prop('disabled', false);
-                            
-                            // Shake animation
-                            $('.login-card').addClass('shake');
-                            setTimeout(function() {
-                                $('.login-card').removeClass('shake');
-                            }, 500);
-                        }
-                    }
-                });
-                
-                return false;
-            });
-            
-            // Enter key support
-            $('#password, input[name="email"]').keypress(function(e) {
-                if (e.which == 13) {
-                    $('#login-form').submit();
-                }
-            });
-        });
-        
-        // Add shake animation style
-        $('head').append(`
-            <style>
-                .shake {
-                    animation: shakeAnim 0.5s ease;
-                }
-                
-                @keyframes shakeAnim {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-8px); }
-                    75% { transform: translateX(8px); }
-                }
-            </style>
-        `);
-    </script>
-    
-    <?php include 'footer.php' ?>
+    <!-- Tabs -->
+    <div class="login-tabs">
+      <div class="login-tab active" data-tab="user">User</div>
+      <div class="login-tab" data-tab="admin">Admin</div>
+      <div class="login-tab" data-tab="signup">Sign Up</div>
+      <div class="login-tab" data-tab="forgot">Forgot</div>
+    </div>
+
+    <!-- User Login Panel -->
+    <div class="tab-panel active" id="panel-user">
+      <form id="user-login-form" autocomplete="off">
+        <div id="user-alert"></div>
+        <label class="form-label">Email Address</label>
+        <div class="input-group-custom">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" class="form-control" name="email" placeholder="your@email.com" required>
+        </div>
+        <label class="form-label">Password</label>
+        <div class="input-group-custom">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" class="form-control" name="password" id="user-pass" placeholder="Enter your password" required>
+          <span class="toggle-pass" onclick="togglePass('user-pass', this)"><i class="fas fa-eye"></i></span>
+        </div>
+        <div class="remember-row">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="javascript:void(0)" onclick="switchTab('forgot')">Forgot password</a>
+        </div>
+        <button type="submit" class="btn-login" id="userLoginBtn">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        <div class="form-links">
+          Need an account? <a href="javascript:void(0)" onclick="switchTab('signup')">Sign up</a> &middot; <a href="javascript:void(0)" onclick="switchTab('forgot')">Forgot password</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Admin Login Panel -->
+    <div class="tab-panel" id="panel-admin">
+      <form id="admin-login-form" autocomplete="off">
+        <div id="admin-alert"></div>
+        <label class="form-label">Username</label>
+        <div class="input-group-custom">
+          <i class="fas fa-user-shield input-icon"></i>
+          <input type="text" class="form-control" name="username" placeholder="Admin username" required>
+        </div>
+        <label class="form-label">Password</label>
+        <div class="input-group-custom">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" class="form-control" name="password" id="admin-pass" placeholder="Admin password" required>
+          <span class="toggle-pass" onclick="togglePass('admin-pass', this)"><i class="fas fa-eye"></i></span>
+        </div>
+        <button type="submit" class="btn-login" id="adminLoginBtn">
+          <i class="fas fa-sign-in-alt"></i> Admin Sign In
+        </button>
+      </form>
+    </div>
+
+    <!-- Sign Up Panel -->
+    <div class="tab-panel" id="panel-signup">
+      <form id="signup-form" autocomplete="off">
+        <div id="signup-alert"></div>
+        <div class="signup-cols">
+          <div class="signup-col">
+            <label class="form-label">First Name</label>
+            <div class="input-group-custom">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" class="form-control" name="firstname" placeholder="First name" required>
+            </div>
+            <label class="form-label">Last Name</label>
+            <div class="input-group-custom">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+            </div>
+            <label class="form-label">Contact</label>
+            <div class="input-group-custom">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="text" class="form-control" name="contact" placeholder="Phone number" required>
+            </div>
+          </div>
+          <div class="signup-col">
+            <label class="form-label">Email</label>
+            <div class="input-group-custom">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" class="form-control" name="email" placeholder="your@email.com" required>
+            </div>
+            <label class="form-label">Password</label>
+            <div class="input-group-custom">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" class="form-control" name="password" id="signup-pass" placeholder="Create password" required>
+            </div>
+            <label class="form-label">Confirm Password</label>
+            <div class="input-group-custom">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" class="form-control" name="cpass" id="signup-cpass" placeholder="Confirm password" required>
+            </div>
+          </div>
+        </div>
+        <label class="form-label">Address</label>
+        <div class="input-group-custom">
+          <i class="fas fa-map-marker-alt input-icon"></i>
+          <input type="text" class="form-control" name="address" placeholder="Your address" required>
+        </div>
+        <small id="signup-pass-match" style="display:block;margin-bottom:10px;"></small>
+        <button type="submit" class="btn-login" id="signupBtn">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+        <div class="form-links">
+          Already have an account? <a href="javascript:void(0)" onclick="switchTab('user')">Sign in</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Forgot Password Panel -->
+    <div class="tab-panel" id="panel-forgot">
+      <form id="forgot-form" autocomplete="off">
+        <div id="forgot-alert"></div>
+        <p style="color:#64748b;font-size:13px;margin-bottom:16px;">Enter your email address and we will send you a password reset link.</p>
+        <label class="form-label">Email Address</label>
+        <div class="input-group-custom">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" class="form-control" name="email" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="btn-login" id="forgotBtn">
+          <i class="fas fa-paper-plane"></i> Send Reset Link
+        </button>
+        <div class="form-links">
+          Remember your password? <a href="javascript:void(0)" onclick="switchTab('user')">Sign in</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="login-footer">
+      <p>&copy; <?php echo date('Y') ?> <?php echo $_SESSION['system']['name'] ?> &mdash; Secure login portal.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(tab) {
+  $('.login-tab').removeClass('active');
+  $('.login-tab[data-tab="'+tab+'"]').addClass('active');
+  $('.tab-panel').removeClass('active');
+  $('#panel-'+tab).addClass('active');
+}
+$('.login-tab').click(function(){ switchTab($(this).data('tab')); });
+
+function togglePass(id, el) {
+  var inp = document.getElementById(id);
+  var icon = el.querySelector('i');
+  if(inp.type === 'password') { inp.type = 'text'; icon.className = 'fas fa-eye-slash'; }
+  else { inp.type = 'password'; icon.className = 'fas fa-eye'; }
+}
+
+// User Login
+$('#user-login-form').submit(function(e){
+  e.preventDefault();
+  var $btn = $('#userLoginBtn');
+  $('#user-alert').html('');
+  $btn.html('<span class="spinner"></span> Signing in...').prop('disabled', true);
+  $.ajax({
+    url: 'admin/ajax.php?action=login2',
+    method: 'POST',
+    data: $(this).serialize(),
+    success: function(resp){
+      if(resp == 1){
+        $btn.html('<i class="fas fa-check"></i> Success!');
+        setTimeout(function(){ location.href = 'index.php?page=home'; }, 400);
+      } else {
+        $('#user-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Invalid email or password.</div>');
+        $btn.html('<i class="fas fa-sign-in-alt"></i> Sign In').prop('disabled', false);
+      }
+    },
+    error: function(){
+      $('#user-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Connection error. Try again.</div>');
+      $btn.html('<i class="fas fa-sign-in-alt"></i> Sign In').prop('disabled', false);
+    }
+  });
+});
+
+// Admin Login
+$('#admin-login-form').submit(function(e){
+  e.preventDefault();
+  var $btn = $('#adminLoginBtn');
+  $('#admin-alert').html('');
+  $btn.html('<span class="spinner"></span> Signing in...').prop('disabled', true);
+  $.ajax({
+    url: 'admin/ajax.php?action=login',
+    method: 'POST',
+    data: $(this).serialize(),
+    success: function(resp){
+      if(resp == 1){
+        $btn.html('<i class="fas fa-check"></i> Success!');
+        setTimeout(function(){ location.href = 'admin/index.php?page=home'; }, 400);
+      } else {
+        $('#admin-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Invalid credentials.</div>');
+        $btn.html('<i class="fas fa-sign-in-alt"></i> Admin Sign In').prop('disabled', false);
+      }
+    },
+    error: function(){
+      $('#admin-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Connection error.</div>');
+      $btn.html('<i class="fas fa-sign-in-alt"></i> Admin Sign In').prop('disabled', false);
+    }
+  });
+});
+
+// Sign Up
+$('#signup-form [name="cpass"], #signup-form [name="password"]').keyup(function(){
+  var p = $('#signup-pass').val(), c = $('#signup-cpass').val();
+  if(p && c){
+    if(p === c) $('#signup-pass-match').html('<span style="color:#16a34a;font-size:12px;"><i class="fas fa-check"></i> Passwords match</span>');
+    else $('#signup-pass-match').html('<span style="color:#dc2626;font-size:12px;"><i class="fas fa-times"></i> Passwords do not match</span>');
+  } else { $('#signup-pass-match').html(''); }
+});
+
+$('#signup-form').submit(function(e){
+  e.preventDefault();
+  var $btn = $('#signupBtn');
+  $('#signup-alert').html('');
+  if($('#signup-pass').val() !== $('#signup-cpass').val()){
+    $('#signup-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Passwords do not match.</div>');
+    return;
+  }
+  $btn.html('<span class="spinner"></span> Creating account...').prop('disabled', true);
+  $.ajax({
+    url: 'admin/ajax.php?action=signup',
+    data: new FormData($(this)[0]),
+    cache: false, contentType: false, processData: false, method: 'POST',
+    success: function(resp){
+      if(resp == 1){
+        $('#signup-alert').html('<div class="alert-custom alert-success-custom"><i class="fas fa-check-circle"></i> Account created! Redirecting...</div>');
+        setTimeout(function(){ location.href = 'index.php?page=home'; }, 700);
+      } else if(resp == 2){
+        $('#signup-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Email already exists.</div>');
+        $btn.html('<i class="fas fa-user-plus"></i> Create Account').prop('disabled', false);
+      }
+    },
+    error: function(){
+      $('#signup-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Connection error.</div>');
+      $btn.html('<i class="fas fa-user-plus"></i> Create Account').prop('disabled', false);
+    }
+  });
+});
+
+// Forgot Password
+$('#forgot-form').submit(function(e){
+  e.preventDefault();
+  var $btn = $('#forgotBtn');
+  $('#forgot-alert').html('');
+  $btn.html('<span class="spinner"></span> Sending...').prop('disabled', true);
+  $.ajax({
+    url: 'admin/ajax.php?action=forgot_password',
+    method: 'POST',
+    data: $(this).serialize(),
+    dataType: 'json',
+    success: function(resp){
+      if(resp && resp.status === 'success'){
+        $('#forgot-alert').html('<div class="alert-custom alert-success-custom"><i class="fas fa-check-circle"></i> '+resp.message+'</div>');
+        $('#forgot-form')[0].reset();
+      } else {
+        var msg = (resp && resp.message) ? resp.message : 'Something went wrong.';
+        $('#forgot-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> '+msg+'</div>');
+      }
+      $btn.html('<i class="fas fa-paper-plane"></i> Send Reset Link').prop('disabled', false);
+    },
+    error: function(){
+      $('#forgot-alert').html('<div class="alert-custom alert-danger-custom"><i class="fas fa-exclamation-circle"></i> Server error.</div>');
+      $btn.html('<i class="fas fa-paper-plane"></i> Send Reset Link').prop('disabled', false);
+    }
+  });
+});
+</script>
 </body>
 </html>
