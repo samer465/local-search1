@@ -17,233 +17,234 @@
 <head>
     <style>
         /* ============================================
-           RED & BLACK THEME - CUSTOM OVERRIDES
+           BLUE & WHITE THEME - CUSTOM OVERRIDES
            ============================================ */
         
-        /* Primary Color Variables - Red & Black Theme */
+        /* Primary Color Variables - Blue & White Theme */
         :root {
-            --theme-red: #dc2626;
-            --theme-red-dark: #b91c1c;
-            --theme-red-darker: #991b1b;
-            --theme-red-light: #ef4444;
-            --theme-red-soft: #fee2e2;
-            --theme-black: #111827;
-            --theme-black-light: #1f2937;
-            --theme-black-lighter: #374151;
-            --theme-gray-dark: #4b5563;
+            --theme-primary: #4f46e5;
+            --theme-primary-dark: #4338ca;
+            --theme-primary-darker: #3730a3;
+            --theme-primary-light: #6366f1;
+            --theme-primary-soft: #eef2ff;
+            --theme-bg: #f8fafc;
+            --theme-bg-card: #ffffff;
+            --theme-bg-dark: #1e293b;
+            --theme-border: #e2e8f0;
+            --theme-text: #1e293b;
+            --theme-text-muted: #64748b;
             --theme-white: #ffffff;
-            --theme-off-white: #f9fafb;
         }
 
-        /* Body Background - Dark Gradient */
+        /* Body Background - Light */
         body {
-            background: linear-gradient(135deg, #0a0c10 0%, #14181f 100%);
+            background: #f0f4ff;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Main Sidebar (Left Menu) - Black Theme */
+        /* Main Sidebar (Left Menu) */
         .main-sidebar,
         .main-sidebar .sidebar {
-            background: linear-gradient(180deg, #0f1117 0%, #0a0c10 100%);
-            border-right: 1px solid rgba(220, 38, 38, 0.15);
+            background: #fff;
+            border-right: 1px solid #e2e8f0;
         }
 
         .main-sidebar .nav-sidebar .nav-item > .nav-link {
-            color: #d1d5db;
+            color: #64748b;
             transition: all 0.25s ease;
         }
 
         .main-sidebar .nav-sidebar .nav-item > .nav-link:hover {
-            background: rgba(220, 38, 38, 0.12);
-            color: #ef4444;
+            background: rgba(79, 70, 229, 0.12);
+            color: #6366f1;
         }
 
         .main-sidebar .nav-sidebar .nav-item > .nav-link.active {
-            background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), transparent);
-            color: #ef4444;
-            border-left: 3px solid #dc2626;
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0.2), transparent);
+            color: #6366f1;
+            border-left: 3px solid #4f46e5;
         }
 
         .main-sidebar .brand-link {
-            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
-            background: #0a0c10;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.3);
+            background: #f0f4ff;
         }
 
         .main-sidebar .brand-link .brand-text {
-            color: #ef4444;
+            color: #6366f1;
             font-weight: 600;
         }
 
         /* Top Navbar - Black with Red Accent */
         .main-header.navbar {
-            background: linear-gradient(90deg, #0f1117 0%, #111827 100%);
-            border-bottom: 2px solid #dc2626;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 2px solid #4f46e5;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.06);
         }
 
         .main-header .nav-link {
-            color: #e5e7eb !important;
+            color: #475569 !important;
         }
 
         .main-header .nav-link:hover {
-            color: #ef4444 !important;
+            color: #6366f1 !important;
         }
 
-        /* Content Wrapper - Dark Background */
+        /* Content Wrapper - Light Background */
         .content-wrapper {
-            background: #0f1117;
+            background: #f0f4ff;
         }
 
         /* Cards - Black/Dark with Red Borders */
         .card {
-            background: #1a1e24;
-            border: 1px solid rgba(220, 38, 38, 0.2);
+            background: #ffffff;
+            border: 1px solid rgba(79, 70, 229, 0.2);
             border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.06);
         }
 
         .card-header {
-            background: #1f242c;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
-            color: #f3f4f6;
+            background: #f8fafc;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.3);
+            color: #1e293b;
         }
 
         .card-header .card-title {
-            color: #ef4444;
+            color: #6366f1;
             font-weight: 600;
         }
 
         .card-body {
-            background: #1a1e24;
-            color: #e5e7eb;
+            background: #ffffff;
+            color: #475569;
         }
 
         .card-footer {
-            background: #1f242c;
-            border-top: 1px solid rgba(220, 38, 38, 0.2);
+            background: #f8fafc;
+            border-top: 1px solid rgba(79, 70, 229, 0.2);
         }
 
         /* Buttons - Red Theme */
         .btn-primary {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
             border: none;
-            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
             transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
         }
 
         .btn-danger {
-            background: #991b1b;
+            background: #3730a3;
             border: none;
         }
 
         .btn-danger:hover {
-            background: #b91c1c;
+            background: #4338ca;
         }
 
         .btn-outline-primary {
-            border-color: #dc2626;
-            color: #dc2626;
+            border-color: #4f46e5;
+            color: #4f46e5;
         }
 
         .btn-outline-primary:hover {
-            background: #dc2626;
-            border-color: #dc2626;
+            background: #4f46e5;
+            border-color: #4f46e5;
             color: #fff;
         }
 
         .btn-secondary {
-            background: #374151;
+            background: #e2e8f0;
             border: none;
         }
 
         /* Tables */
         .table {
-            color: #e5e7eb;
+            color: #475569;
         }
 
         .table thead th {
-            background: #1f242c;
-            border-bottom: 2px solid #dc2626;
-            color: #ef4444;
+            background: #f8fafc;
+            border-bottom: 2px solid #4f46e5;
+            color: #6366f1;
         }
 
         .table tbody tr {
-            border-bottom: 1px solid rgba(220, 38, 38, 0.15);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.15);
         }
 
         .table tbody tr:hover {
-            background: rgba(220, 38, 38, 0.08);
+            background: rgba(79, 70, 229, 0.08);
         }
 
         /* Modals - Dark Theme */
         .modal-content {
-            background: #1a1e24;
-            border: 1px solid #dc2626;
+            background: #ffffff;
+            border: 1px solid #4f46e5;
             border-radius: 1rem;
         }
 
         .modal-header {
-            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
-            background: #1f242c;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.3);
+            background: #f8fafc;
         }
 
         .modal-header .modal-title {
-            color: #ef4444;
+            color: #6366f1;
             font-weight: 600;
         }
 
         .modal-body {
-            color: #e5e7eb;
+            color: #475569;
         }
 
         .modal-footer {
-            border-top: 1px solid rgba(220, 38, 38, 0.2);
+            border-top: 1px solid rgba(79, 70, 229, 0.2);
         }
 
         /* Form Controls */
         .form-control {
-            background: #111827;
-            border: 1px solid #374151;
-            color: #f3f4f6;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
         }
 
         .form-control:focus {
-            background: #1f2937;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.25);
+            background: #f1f5f9;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25);
             color: #fff;
         }
 
         .form-group label {
-            color: #ef4444;
+            color: #6366f1;
             font-weight: 500;
         }
 
         /* Dropdown Menus */
         .dropdown-menu {
-            background: #1f242c;
-            border: 1px solid rgba(220, 38, 38, 0.3);
+            background: #f8fafc;
+            border: 1px solid rgba(79, 70, 229, 0.3);
         }
 
         .dropdown-item {
-            color: #e5e7eb;
+            color: #475569;
         }
 
         .dropdown-item:hover {
-            background: rgba(220, 38, 38, 0.15);
-            color: #ef4444;
+            background: rgba(79, 70, 229, 0.15);
+            color: #6366f1;
         }
 
         /* Alerts & Toasts */
         .alert-danger {
             background: rgba(153, 27, 27, 0.2);
-            border-color: #dc2626;
+            border-color: #4f46e5;
             color: #fecaca;
         }
 
@@ -254,89 +255,89 @@
         }
 
         .toast {
-            background: #1f242c;
-            border-left: 4px solid #dc2626;
+            background: #f8fafc;
+            border-left: 4px solid #4f46e5;
         }
 
         .toast-body {
-            color: #e5e7eb;
+            color: #475569;
         }
 
         /* Pagination */
         .pagination .page-item .page-link {
-            background: #1f242c;
-            border-color: #374151;
-            color: #e5e7eb;
+            background: #f8fafc;
+            border-color: #e2e8f0;
+            color: #475569;
         }
 
         .pagination .page-item.active .page-link {
-            background: #dc2626;
-            border-color: #dc2626;
+            background: #4f46e5;
+            border-color: #4f46e5;
             color: #fff;
         }
 
         .pagination .page-item .page-link:hover {
-            background: rgba(220, 38, 38, 0.2);
-            color: #ef4444;
+            background: rgba(79, 70, 229, 0.2);
+            color: #6366f1;
         }
 
         /* Footer */
         .main-footer {
-            background: #0f1117;
-            border-top: 1px solid rgba(220, 38, 38, 0.3);
-            color: #9ca3af;
+            background: #f8fafc;
+            border-top: 1px solid rgba(79, 70, 229, 0.3);
+            color: #94a3b8;
         }
 
         /* Tabs */
         .nav-tabs {
-            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.3);
         }
 
         .nav-tabs .nav-link {
-            color: #9ca3af;
+            color: #94a3b8;
         }
 
         .nav-tabs .nav-link:hover {
-            border-color: #dc2626;
-            color: #ef4444;
+            border-color: #4f46e5;
+            color: #6366f1;
         }
 
         .nav-tabs .nav-link.active {
-            background: #1a1e24;
-            border-color: #dc2626 #dc2626 #1a1e24;
-            color: #ef4444;
+            background: #ffffff;
+            border-color: #4f46e5 #4f46e5 #ffffff;
+            color: #6366f1;
         }
 
         /* Progress Bars */
         .progress {
-            background: #374151;
+            background: #e2e8f0;
         }
 
         .progress-bar {
-            background: #dc2626;
+            background: #4f46e5;
         }
 
         /* List Groups */
         .list-group-item {
-            background: #1a1e24;
-            border-color: rgba(220, 38, 38, 0.2);
-            color: #e5e7eb;
+            background: #ffffff;
+            border-color: rgba(79, 70, 229, 0.2);
+            color: #475569;
         }
 
         /* Badges */
         .badge-danger, .badge-primary {
-            background: #dc2626;
+            background: #4f46e5;
         }
 
         /* Close Button */
         .close {
-            color: #ef4444;
+            color: #6366f1;
             text-shadow: none;
             opacity: 0.8;
         }
 
         .close:hover {
-            color: #dc2626;
+            color: #4f46e5;
             opacity: 1;
         }
 
@@ -347,122 +348,122 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #111827;
+            background: #f1f5f9;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #dc2626;
+            background: #4f46e5;
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #ef4444;
+            background: #6366f1;
         }
 
         /* Select2 Override if used */
         .select2-container--default .select2-selection--single {
-            background: #111827;
-            border-color: #374151;
+            background: #f1f5f9;
+            border-color: #e2e8f0;
         }
 
         .select2-container--default .select2-selection--single .select2-selection__rendered {
-            color: #f3f4f6;
+            color: #1e293b;
         }
 
         /* Summernote Editor */
         .note-editor.note-frame {
-            background: #111827;
-            border-color: #374151;
+            background: #f1f5f9;
+            border-color: #e2e8f0;
         }
 
         .note-editor.note-frame .note-editing-area .note-editable {
-            background: #111827;
-            color: #e5e7eb;
+            background: #f1f5f9;
+            color: #475569;
         }
 
         .note-toolbar {
-            background: #1f242c !important;
-            border-bottom: 1px solid #dc2626 !important;
+            background: #f8fafc !important;
+            border-bottom: 1px solid #4f46e5 !important;
         }
 
         /* Cards with outline */
         .card.card-outline.card-primary {
-            border-color: #dc2626;
+            border-color: #4f46e5;
         }
 
         .card.card-outline.card-primary .card-header {
-            background: #1f242c;
+            background: #f8fafc;
         }
 
         /* DataTables */
         .dataTables_wrapper .dataTables_paginate .paginate_button {
-            color: #e5e7eb !important;
+            color: #475569 !important;
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #dc2626 !important;
-            border-color: #dc2626 !important;
+            background: #4f46e5 !important;
+            border-color: #4f46e5 !important;
             color: #fff !important;
         }
 
         /* Info Boxes */
         .info-box {
-            background: #1a1e24;
-            border: 1px solid rgba(220, 38, 38, 0.2);
+            background: #ffffff;
+            border: 1px solid rgba(79, 70, 229, 0.2);
         }
 
         .info-box .info-box-icon {
-            background: rgba(220, 38, 38, 0.15);
+            background: rgba(79, 70, 229, 0.15);
         }
 
         .info-box .info-box-number {
-            color: #ef4444;
+            color: #6366f1;
         }
 
         /* Small text adjustments */
         .text-muted {
-            color: #9ca3af !important;
+            color: #94a3b8 !important;
         }
 
         .text-primary {
-            color: #ef4444 !important;
+            color: #6366f1 !important;
         }
 
         .bg-primary {
-            background: #dc2626 !important;
+            background: #4f46e5 !important;
         }
 
         .bg-gradient-primary {
-            background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+            background: linear-gradient(135deg, #4f46e5, #4338ca) !important;
         }
 
         /* Accordion */
         .accordion-item {
-            background: #1a1e24;
-            border-color: rgba(220, 38, 38, 0.2);
+            background: #ffffff;
+            border-color: rgba(79, 70, 229, 0.2);
         }
 
         .accordion-button {
-            background: #1f242c;
-            color: #ef4444;
+            background: #f8fafc;
+            color: #6366f1;
         }
 
         .accordion-button:not(.collapsed) {
-            background: #dc2626;
+            background: #4f46e5;
             color: #fff;
         }
 
         .accordion-body {
-            background: #1a1e24;
+            background: #ffffff;
         }
 
         /* Sweet Alert Override if used */
         .swal2-popup {
-            background: #1a1e24;
+            background: #ffffff;
         }
 
         .swal2-title, .swal2-html-container {
-            color: #e5e7eb;
+            color: #475569;
         }
 
         /* Fix for sidebar collapse button */
@@ -472,11 +473,11 @@
 
         /* User dropdown */
         .user-panel .info {
-            color: #e5e7eb;
+            color: #475569;
         }
 
         .user-panel .image img {
-            border-color: #dc2626;
+            border-color: #4f46e5;
         }
 
         /* Animation for hover effects */
@@ -491,27 +492,27 @@
 
         /* Card hover effect */
         .card:hover {
-            border-color: rgba(220, 38, 38, 0.5);
+            border-color: rgba(79, 70, 229, 0.5);
             transition: all 0.3s ease;
         }
 
         /* Custom red border for active states */
         .nav-link.active {
-            color: #ef4444 !important;
+            color: #6366f1 !important;
         }
 
         /* Small icon adjustments */
         .nav-icon {
-            color: #9ca3af;
+            color: #94a3b8;
         }
 
         .nav-link.active .nav-icon {
-            color: #ef4444;
+            color: #6366f1;
         }
 
         /* Fix for sidebar menu header */
         .nav-sidebar .nav-header {
-            color: #dc2626;
+            color: #4f46e5;
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.7rem;
@@ -524,11 +525,11 @@
         }
 
         .nav-treeview > .nav-item > .nav-link:hover {
-            color: #ef4444;
+            color: #6366f1;
         }
 
         .nav-treeview > .nav-item > .nav-link.active {
-            color: #ef4444;
+            color: #6366f1;
         }
     </style>
 </head>
@@ -620,11 +621,45 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer" style="position: static !important;">
-    <strong></a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b><?php echo $_SESSION['system']['name'] ?></b>
+  <footer class="main-footer" style="position: static !important; background: #f0f4ff; border-top: 1px solid rgba(79,70,229,0.2); padding: 0;">
+    <div class="container">
+      <div class="row py-4">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="d-flex align-items-center mb-2">
+            <span style="width:32px;height:32px;background:linear-gradient(135deg,#4f46e5,#6366f1);border-radius:8px;display:inline-flex;align-items:center;justify-content:center;margin-right:8px;">
+              <i class="fas fa-search-location text-white" style="font-size:14px;"></i>
+            </span>
+            <strong style="color:#1e293b;font-size:16px;"><?php echo $_SESSION['system']['name'] ?></strong>
+          </div>
+          <p style="color:#94a3b8;font-size:13px;line-height:1.6;margin:0;">
+            Find trusted local service providers in your area. Your one-stop platform for connecting with professionals.
+          </p>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 style="color:#6366f1;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Quick Links</h6>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="margin-bottom:6px;"><a href="./" style="color:#94a3b8;font-size:13px;text-decoration:none;transition:color 0.2s;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#4f46e5;"></i> Home</a></li>
+            <li style="margin-bottom:6px;"><a href="./index.php?page=services" style="color:#94a3b8;font-size:13px;text-decoration:none;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#4f46e5;"></i> Services</a></li>
+            <li style="margin-bottom:6px;"><a href="./index.php?page=about" style="color:#94a3b8;font-size:13px;text-decoration:none;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#4f46e5;"></i> About Us</a></li>
+            <li><a href="./index.php?page=contact_us" style="color:#94a3b8;font-size:13px;text-decoration:none;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#4f46e5;"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 style="color:#6366f1;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Contact Info</h6>
+          <?php if(!empty($_SESSION['system']['email'])): ?>
+          <p style="color:#94a3b8;font-size:13px;margin-bottom:6px;"><i class="fas fa-envelope mr-2" style="color:#4f46e5;font-size:12px;"></i> <?php echo $_SESSION['system']['email'] ?></p>
+          <?php endif; ?>
+          <?php if(!empty($_SESSION['system']['contact'])): ?>
+          <p style="color:#94a3b8;font-size:13px;margin-bottom:6px;"><i class="fas fa-phone mr-2" style="color:#4f46e5;font-size:12px;"></i> <?php echo $_SESSION['system']['contact'] ?></p>
+          <?php endif; ?>
+          <?php if(!empty($_SESSION['system']['address'])): ?>
+          <p style="color:#94a3b8;font-size:13px;margin-bottom:0;"><i class="fas fa-map-marker-alt mr-2" style="color:#4f46e5;font-size:12px;"></i> <?php echo $_SESSION['system']['address'] ?></p>
+          <?php endif; ?>
+        </div>
+      </div>
+      <div class="text-center py-3" style="border-top:1px solid rgba(79,70,229,0.1);">
+        <small style="color:#94a3b8;font-size:12px;">&copy; <?php echo date('Y') ?> <?php echo $_SESSION['system']['name'] ?>. All rights reserved.</small>
+      </div>
     </div>
   </footer>
 </div>
@@ -648,23 +683,23 @@
         
         // Add red border to active sidebar items if missing
         $('.nav-sidebar .nav-link.active').each(function() {
-            $(this).css('border-left', '3px solid #dc2626');
+            $(this).css('border-left', '3px solid #4f46e5');
         });
         
         // Make sure any dataTables pagination has proper styling
         if ($.fn.dataTable) {
             $('.dataTable').on('draw.dt', function() {
                 $('.paginate_button.current').css({
-                    'background': '#dc2626',
-                    'border-color': '#dc2626'
+                    'background': '#4f46e5',
+                    'border-color': '#4f46e5'
                 });
             });
         }
         
         // Toast notifications theme
         $('#alert_toast').css({
-            'background': '#1f242c',
-            'border-left': '4px solid #dc2626'
+            'background': '#f8fafc',
+            'border-left': '4px solid #4f46e5'
         });
         
         console.log('Red & Black Theme Loaded Successfully');

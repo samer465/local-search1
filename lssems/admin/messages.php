@@ -10,7 +10,7 @@
         margin-top: 10px;
         padding: 10px;
         background: #f8f9fa;
-        border-left: 3px solid #c0392b;
+        border-left: 3px solid #4f46e5;
     }
 </style>
 <div class="col-lg-12">

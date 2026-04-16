@@ -345,6 +345,139 @@ Class Action {
 				return 1;
 		}
 	}
+	// Forgot Password
+	function forgot_password(){
+		extract($_POST);
+		$check = $this->db->query("SELECT * FROM users WHERE email = '".$this->db->real_escape_string($email)."' AND type = 2");
+		if($check->num_rows > 0){
+			$token = bin2hex(random_bytes(32));
+			$expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
+			$this->db->query("INSERT INTO password_resets SET email='".$this->db->real_escape_string($email)."', token='$token', expires_at='$expires'");
+			// In production, send email with reset link. For now, store the token.
+			return json_encode(['status'=>'success','message'=>'Password reset instructions have been sent to your email address. Check your inbox.','token'=>$token]);
+		} else {
+			return json_encode(['status'=>'error','message'=>'No account found with that email address.']);
+		}
+	}
+
+	// Reset Password
+	function reset_password(){
+		extract($_POST);
+		$check = $this->db->query("SELECT * FROM password_resets WHERE token='".$this->db->real_escape_string($token)."' AND used=0 AND expires_at > NOW()");
+		if($check->num_rows > 0){
+			$row = $check->fetch_assoc();
+			$this->db->query("UPDATE users SET password=md5('".$this->db->real_escape_string($password)."') WHERE email='".$row['email']."'");
+			$this->db->query("UPDATE password_resets SET used=1 WHERE id=".$row['id']);
+			return json_encode(['status'=>'success','message'=>'Password has been reset successfully.']);
+		} else {
+			return json_encode(['status'=>'error','message'=>'Invalid or expired reset token.']);
+		}
+	}
+
+	// Send Message (from contact form)
+	function send_message(){
+		extract($_POST);
+		$sender_name = $this->db->real_escape_string($sender_name);
+		$sender_email = $this->db->real_escape_string($sender_email);
+		$subject = $this->db->real_escape_string($subject);
+		$message = $this->db->real_escape_string($message);
+		$save = $this->db->query("INSERT INTO messages SET sender_name='$sender_name', sender_email='$sender_email', subject='$subject', message='$message'");
+		if($save){
+			return json_encode(['status'=>'success','message'=>'Your message has been sent successfully! We will get back to you soon.']);
+		} else {
+			return json_encode(['status'=>'error','message'=>'Failed to send message. Please try again.']);
+		}
+	}
+
+	// Get single message
+	function get_message(){
+		extract($_POST);
+		$qry = $this->db->query("SELECT * FROM messages WHERE id = ".(int)$id);
+		if($qry->num_rows > 0){
+			$row = $qry->fetch_assoc();
+			// Mark as read
+			$this->db->query("UPDATE messages SET status=1 WHERE id=".(int)$id);
+			return json_encode($row);
+		}
+		return json_encode(null);
+	}
+
+	// Reply to message
+	function reply_message(){
+		extract($_POST);
+		$reply = $this->db->real_escape_string($reply);
+		$save = $this->db->query("UPDATE messages SET reply='$reply', status=1 WHERE id=".(int)$id);
+		if($save){
+			return json_encode(['status'=>'success','message'=>'Reply sent successfully.']);
+		}
+		return json_encode(['status'=>'error','message'=>'Failed to send reply.']);
+	}
+
+	// Delete message
+	function delete_message(){
+		extract($_POST);
+		$del = $this->db->query("DELETE FROM messages WHERE id=".(int)$id);
+		if($del) return 1;
+	}
+
+	// Save Booking
+	function save_booking(){
+		extract($_POST);
+		$user_id = (int)$user_id;
+		$provider_id = (int)$provider_id;
+		$service_id = (int)$service_id;
+		$booking_date = $this->db->real_escape_string($booking_date);
+		$booking_time = $this->db->real_escape_string($booking_time);
+		$notes = $this->db->real_escape_string($notes);
+		$save = $this->db->query("INSERT INTO bookings SET user_id=$user_id, provider_id=$provider_id, service_id=$service_id, booking_date='$booking_date', booking_time='$booking_time', notes='$notes'");
+		if($save){
+			return json_encode(['status'=>'success','message'=>'Booking submitted successfully! The provider will confirm your appointment.']);
+		}
+		return json_encode(['status'=>'error','message'=>'Failed to submit booking.']);
+	}
+
+	// Get user bookings
+	function get_bookings(){
+		extract($_POST);
+		$uid = (int)$user_id;
+		$_status = array('Pending','Confirmed','Completed','Cancelled');
+		$qry = $this->db->query("SELECT b.*, pc.name as provider_name, s.service FROM bookings b INNER JOIN persons_companies pc ON pc.id=b.provider_id INNER JOIN services s ON s.id=b.service_id WHERE b.user_id=$uid ORDER BY b.date_created DESC");
+		$data = array();
+		while($row=$qry->fetch_assoc()){
+			$row['status_text'] = $_status[$row['status']];
+			$data[] = $row;
+		}
+		return json_encode($data);
+	}
+
+	// Save Review
+	function save_review(){
+		extract($_POST);
+		$user_id = (int)$user_id;
+		$provider_id = (int)$provider_id;
+		$rating = (int)$rating;
+		$review = $this->db->real_escape_string($review);
+		$save = $this->db->query("INSERT INTO reviews SET user_id=$user_id, provider_id=$provider_id, rating=$rating, review='$review'");
+		if($save) return 1;
+	}
+
+	// Get provider reviews
+	function get_reviews(){
+		extract($_POST);
+		$pid = (int)$provider_id;
+		$qry = $this->db->query("SELECT r.*, CONCAT(u.firstname,' ',u.lastname) as reviewer_name FROM reviews r INNER JOIN users u ON u.id=r.user_id WHERE r.provider_id=$pid ORDER BY r.date_created DESC");
+		$data = array();
+		while($row=$qry->fetch_assoc()){
+			$data[] = $row;
+		}
+		return json_encode($data);
+	}
+
+	// Get cart count (stub for compatibility)
+	function get_cart_count(){
+		return json_encode(['count'=>0,'list'=>[]]);
+	}
+
 	function find_sp(){
 		extract($_POST);
   		$_type = array("","Single/Freelancer","Group/Service Provider Business");

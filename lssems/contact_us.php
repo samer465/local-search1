@@ -10,7 +10,7 @@
         .contact-header h2 {
             font-size: 42px;
             font-weight: 800;
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -18,7 +18,7 @@
         }
         
         .contact-header p {
-            color: #666;
+            color: #94a3b8;
             font-size: 16px;
             max-width: 600px;
             margin: 0 auto;
@@ -27,19 +27,20 @@
         .contact-header .underline {
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
             margin: 20px auto 0;
             border-radius: 2px;
         }
         
         /* Contact Info Cards */
         .contact-info-card {
-            background: white;
+            background: #ffffff;
+            border: 1px solid rgba(79, 70, 229, 0.15);
             border-radius: 20px;
             padding: 30px 20px;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             position: relative;
             overflow: hidden;
@@ -53,7 +54,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -64,13 +65,14 @@
         
         .contact-info-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(192, 57, 43, 0.15);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.06);
+            border-color: rgba(79, 70, 229, 0.4);
         }
         
         .contact-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -81,7 +83,7 @@
         
         .contact-info-card:hover .contact-icon {
             transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(192, 57, 43, 0.3);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
         }
         
         .contact-icon i {
@@ -92,22 +94,23 @@
         .contact-info-card h4 {
             font-size: 18px;
             font-weight: 600;
-            color: #c0392b;
+            color: #6366f1;
             margin-bottom: 10px;
         }
         
         .contact-info-card p {
             font-size: 14px;
-            color: #555;
+            color: #64748b;
             margin-bottom: 0;
             word-break: break-word;
         }
         
         /* Message Form Card */
         .message-form-card {
-            background: white;
+            background: #ffffff;
+            border: 1px solid rgba(79, 70, 229, 0.15);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(79,70,229,0.06);
             overflow: hidden;
             margin-top: 30px;
         }
@@ -115,7 +118,7 @@
         .form-header {
             background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
             padding: 25px 30px;
-            border-bottom: 3px solid #c0392b;
+            border-bottom: 3px solid #4f46e5;
         }
         
         .form-header h3 {
@@ -133,6 +136,7 @@
         
         .form-body {
             padding: 30px;
+            background: #ffffff;
         }
         
         .form-group {
@@ -141,27 +145,35 @@
         
         .form-group label {
             font-weight: 600;
-            color: #333;
+            color: #6366f1;
             margin-bottom: 8px;
             display: block;
         }
         
         .form-group label i {
-            color: #c0392b;
+            color: #4f46e5;
             margin-right: 8px;
         }
         
         .form-control {
-            border: 2px solid #e0e0e0;
+            border: 1px solid rgba(79, 70, 229, 0.2);
             border-radius: 12px;
             padding: 12px 15px;
             transition: all 0.3s ease;
             font-size: 14px;
+            background: #f1f5f9;
+            color: #1e293b;
         }
         
         .form-control:focus {
-            border-color: #c0392b;
-            box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.1);
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+            background: #f1f5f9;
+            color: #fff;
+        }
+        
+        .form-control::placeholder {
+            color: #94a3b8;
         }
         
         textarea.form-control {
@@ -170,7 +182,7 @@
         }
         
         .btn-send-message {
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             border: none;
             padding: 14px 35px;
             border-radius: 50px;
@@ -182,14 +194,15 @@
         
         .btn-send-message:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(192, 57, 43, 0.3);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
         }
         
         /* Service Categories Section - Enhanced */
         .services-section {
             margin-top: 60px;
             padding-top: 40px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+            border: 1px solid rgba(79, 70, 229, 0.1);
             border-radius: 30px;
             padding: 40px;
         }
@@ -202,17 +215,17 @@
         .section-title h3 {
             font-size: 36px;
             font-weight: 800;
-            color: #1a1a1a;
+            color: #1e293b;
             margin-bottom: 15px;
         }
         
         .section-title h3 i {
-            color: #c0392b;
+            color: #4f46e5;
             margin-right: 10px;
         }
         
         .section-title p {
-            color: #666;
+            color: #94a3b8;
             font-size: 16px;
             max-width: 700px;
             margin: 0 auto;
@@ -225,18 +238,20 @@
         }
         
         .service-category-item {
-            background: white;
+            background: #ffffff;
+            border: 1px solid rgba(79, 70, 229, 0.15);
             border-radius: 20px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             position: relative;
         }
         
         .service-category-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(192, 57, 43, 0.2);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.08);
+            border-color: rgba(79, 70, 229, 0.4);
         }
         
         .service-image {
@@ -258,7 +273,7 @@
         .service-category-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -266,7 +281,7 @@
             margin: -40px auto 15px;
             position: relative;
             z-index: 1;
-            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.3);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
         }
         
         .service-category-icon i {
@@ -277,14 +292,14 @@
         .service-category-item h5 {
             font-size: 18px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #1e293b;
             margin: 15px 0 10px;
             text-align: center;
         }
         
         .service-description {
             font-size: 13px;
-            color: #666;
+            color: #94a3b8;
             line-height: 1.6;
             margin-bottom: 15px;
             text-align: center;
@@ -296,12 +311,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid rgba(79, 70, 229, 0.1);
             margin-top: 10px;
         }
         
         .service-price {
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
@@ -310,7 +325,7 @@
         }
         
         .service-link {
-            color: #c0392b;
+            color: #4f46e5;
             text-decoration: none;
             font-size: 13px;
             font-weight: 600;
@@ -318,7 +333,7 @@
         }
         
         .service-link:hover {
-            color: #e74c3c;
+            color: #6366f1;
             text-decoration: underline;
         }
         
@@ -335,7 +350,7 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(192, 57, 43, 0.9);
+            background: rgba(79, 70, 229, 0.9);
             color: white;
             padding: 5px 12px;
             border-radius: 20px;
@@ -380,12 +395,12 @@
         }
         
         .service-features li i {
-            color: #c0392b;
+            color: #4f46e5;
             width: 20px;
         }
         
         .btn-book-now {
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -397,7 +412,7 @@
         
         .btn-book-now:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(192, 57, 43, 0.3);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
         }
         
         /* Loading Spinner */
