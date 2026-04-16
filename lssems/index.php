@@ -620,11 +620,45 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer" style="position: static !important;">
-    <strong></a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b><?php echo $_SESSION['system']['name'] ?></b>
+  <footer class="main-footer" style="position: static !important; background: #0a0c10; border-top: 1px solid rgba(220,38,38,0.2); padding: 0;">
+    <div class="container">
+      <div class="row py-4">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="d-flex align-items-center mb-2">
+            <span style="width:32px;height:32px;background:linear-gradient(135deg,#dc2626,#ef4444);border-radius:8px;display:inline-flex;align-items:center;justify-content:center;margin-right:8px;">
+              <i class="fas fa-search-location text-white" style="font-size:14px;"></i>
+            </span>
+            <strong style="color:#f3f4f6;font-size:16px;"><?php echo $_SESSION['system']['name'] ?></strong>
+          </div>
+          <p style="color:#9ca3af;font-size:13px;line-height:1.6;margin:0;">
+            Find trusted local service providers in your area. Your one-stop platform for connecting with professionals.
+          </p>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 style="color:#ef4444;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Quick Links</h6>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="margin-bottom:6px;"><a href="./" style="color:#9ca3af;font-size:13px;text-decoration:none;transition:color 0.2s;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#dc2626;"></i> Home</a></li>
+            <li style="margin-bottom:6px;"><a href="./index.php?page=services" style="color:#9ca3af;font-size:13px;text-decoration:none;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#dc2626;"></i> Services</a></li>
+            <li style="margin-bottom:6px;"><a href="./index.php?page=about" style="color:#9ca3af;font-size:13px;text-decoration:none;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#dc2626;"></i> About Us</a></li>
+            <li><a href="./index.php?page=contact_us" style="color:#9ca3af;font-size:13px;text-decoration:none;"><i class="fas fa-chevron-right mr-1" style="font-size:10px;color:#dc2626;"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 style="color:#ef4444;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Contact Info</h6>
+          <?php if(!empty($_SESSION['system']['email'])): ?>
+          <p style="color:#9ca3af;font-size:13px;margin-bottom:6px;"><i class="fas fa-envelope mr-2" style="color:#dc2626;font-size:12px;"></i> <?php echo $_SESSION['system']['email'] ?></p>
+          <?php endif; ?>
+          <?php if(!empty($_SESSION['system']['contact'])): ?>
+          <p style="color:#9ca3af;font-size:13px;margin-bottom:6px;"><i class="fas fa-phone mr-2" style="color:#dc2626;font-size:12px;"></i> <?php echo $_SESSION['system']['contact'] ?></p>
+          <?php endif; ?>
+          <?php if(!empty($_SESSION['system']['address'])): ?>
+          <p style="color:#9ca3af;font-size:13px;margin-bottom:0;"><i class="fas fa-map-marker-alt mr-2" style="color:#dc2626;font-size:12px;"></i> <?php echo $_SESSION['system']['address'] ?></p>
+          <?php endif; ?>
+        </div>
+      </div>
+      <div class="text-center py-3" style="border-top:1px solid rgba(220,38,38,0.1);">
+        <small style="color:#6b7280;font-size:12px;">&copy; <?php echo date('Y') ?> <?php echo $_SESSION['system']['name'] ?>. All rights reserved.</small>
+      </div>
     </div>
   </footer>
 </div>

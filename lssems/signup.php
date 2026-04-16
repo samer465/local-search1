@@ -1,182 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'header.php' ?>
-<body class="hold-transition register-page">
-<div class=" col-lg-7">
-  <div class="register-logo">
-    <a href="#"><b>Event Registration and Attendance System</b></a>
-  </div>
 <?php session_start() ?>
-<?php include('admin/db_connect.php'); ?>
+<?php 
+  include 'admin/db_connect.php';
+  ob_start();
+  if(!isset($_SESSION['system'])){
+    $system = $conn->query("SELECT * FROM system_settings")->fetch_array();
+    foreach($system as $k => $v){
+      $_SESSION['system'][$k] = $v;
+    }
+  }
+  ob_end_flush();
+  include 'header.php';
+?>
 <?php 
 if(isset($_SESSION['login_id'])){
-	$qry = $conn->query("SELECT * from users where id = {$_SESSION['login_id']} ");
-	foreach($qry->fetch_array() as $k => $v){
-		$$k = $v;
-	}
+  $qry = $conn->query("SELECT * from users where id = {$_SESSION['login_id']} ");
+  foreach($qry->fetch_array() as $k => $v){
+    $$k = $v;
+  }
 }
 ?>
-  <div class="card">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg"><?php echo !isset($id) ? 'Create Account' : 'Manage Account'; ?></p>
+<head>
+<style>
+body {
+  background: linear-gradient(135deg, #0a0c10 0%, #14181f 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-card {
+  background: rgba(26, 30, 36, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 700px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  animation: fadeUp 0.5s ease-out;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.signup-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: -200% 0; }
+  50% { background-position: 200% 0; }
+}
+
+.signup-header {
+  text-align: center;
+  padding: 32px 24px 16px;
+}
+
+.signup-logo-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+}
+.signup-logo-icon i {
+  font-size: 26px;
+  color: #fff;
+}
+
+.signup-header h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f3f4f6;
+  margin-bottom: 4px;
+}
+.signup-header p {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.signup-body {
+  padding: 8px 32px 32px;
+}
+
+.signup-body .form-control {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 10px;
+  color: #f3f4f6;
+  padding: 10px 14px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+.signup-body .form-control:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+}
+.signup-body .form-control::placeholder {
+  color: #6b7280;
+}
+
+.signup-body textarea.form-control {
+  resize: vertical;
+}
+
+.signup-section-label {
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.signup-divider {
+  border-left: 1px solid rgba(220, 38, 38, 0.15);
+}
+
+.input-icon-group {
+  position: relative;
+}
+.input-icon-group .form-control {
+  padding-left: 38px;
+}
+.input-icon-group .input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ef4444;
+  font-size: 13px;
+  z-index: 2;
+}
+
+.btn-signup {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border: none;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+}
+.btn-signup:hover {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  color: #fff;
+}
+
+.signup-footer {
+  padding: 16px 32px 24px;
+  text-align: center;
+}
+.signup-footer a {
+  color: #ef4444;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.signup-footer a:hover {
+  color: #f87171;
+}
+
+.icheck-primary label {
+  color: #d1d5db;
+  font-size: 13px;
+}
+.icheck-primary label a {
+  color: #ef4444;
+}
+
+#msg .alert {
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+#pass_match i {
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .signup-body { padding: 8px 20px 24px; }
+  .signup-divider { border-left: none; border-top: 1px solid rgba(220,38,38,0.15); padding-top: 12px; margin-top: 4px; }
+}
+</style>
+</head>
+
+<body>
+<div class="signup-container">
+  <div class="signup-card">
+    <div class="signup-header">
+      <div class="signup-logo-icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <h3><?php echo !isset($id) ? 'Create Account' : 'Manage Account'; ?></h3>
+      <p><?php echo !isset($id) ? 'Join our platform and find the best services' : 'Update your account details'; ?></p>
+    </div>
+
+    <div class="signup-body">
       <form id="manage-signup">
-      	<input type="hidden" value="<?php echo isset($id) ? $id : '' ?>" name="id">
-	      <div class="col-md-12">
-	      	<div class="row">
-	      		<div class="col-md-6 border-right">
-      				<div class="input-group mb-3">
-			          <input type="text" class="form-control" name="firstname" required placeholder="First Name" value="<?php echo isset($firstname) ? $firstname : '' ?>">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-user"></span>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="input-group mb-3">
-			          <input type="text" class="form-control" name="middlename"  placeholder="Middle Name" value="<?php echo isset($middlename) ? $middlename : '' ?>">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-user"></span>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="input-group mb-3">
-			          <input type="text" class="form-control" name="lastname" required placeholder="Last Name" value="<?php echo isset($lastname) ? $lastname : '' ?>">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-user"></span>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="input-group mb-3">
-			          <input type="text" class="form-control" name="contact" required placeholder="Contact Number" value="<?php echo isset($contact) ? $contact : '' ?>">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-mobile"></span>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="mb-3">
-			          <textarea cols="30" rows="3" class="form-control" name="address" required placeholder="Address"><?php echo isset($address) ? $address : '' ?></textarea>
-			        </div>
-	      		</div>
-	      		<div class="col-md-6">
-	      			<div class="input-group mb-3">
-			          <input type="email" class="form-control" name="email" required="" placeholder="Email" value="<?php echo isset($email) ? $email : '' ?>">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-envelope"></span>
-			            </div>
-			          </div>
-			        </div>
-			        <small id="msg"></small>
-			        <div class="input-group mb-3">
-			          <input type="password" class="form-control" name="password" <?php echo isset($id) ? '' : "required" ?> placeholder="Password">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-lock"></span>
-			            </div>
-			          </div>
-			        </div>
-			        <?php if(isset($id)): ?>
-						<small><i>Leave this field blank if you dont want to change your password.</i></small>
-					<?php endif; ?>
-			        <div class="input-group mb-3">
-			          <input type="password" class="form-control" name="cpass" <?php echo isset($id) ? '' : "required" ?> placeholder="Retype password">
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-lock"></span>
-			            </div>
-			          </div>
-			        </div>
-					<small id="pass_match" data-status=''></small>
-
-	      		</div>
-	      	</div>
-	      </div>
+        <input type="hidden" value="<?php echo isset($id) ? $id : '' ?>" name="id">
         <div class="row">
-          <div class="col-8">
-	        <?php if(!isset($id)): ?>
+          <!-- Left Column: Personal Info -->
+          <div class="col-md-6">
+            <span class="signup-section-label"><i class="fas fa-user mr-1"></i> Personal Information</span>
 
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-user"></span>
+              <input type="text" class="form-control" name="firstname" required placeholder="First Name" value="<?php echo isset($firstname) ? $firstname : '' ?>">
+            </div>
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-user"></span>
+              <input type="text" class="form-control" name="middlename" placeholder="Middle Name (optional)" value="<?php echo isset($middlename) ? $middlename : '' ?>">
+            </div>
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-user"></span>
+              <input type="text" class="form-control" name="lastname" required placeholder="Last Name" value="<?php echo isset($lastname) ? $lastname : '' ?>">
+            </div>
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-mobile-alt"></span>
+              <input type="text" class="form-control" name="contact" required placeholder="Contact Number" value="<?php echo isset($contact) ? $contact : '' ?>">
+            </div>
+            <div class="mb-3">
+              <textarea cols="30" rows="2" class="form-control" name="address" required placeholder="Address"><?php echo isset($address) ? $address : '' ?></textarea>
+            </div>
+          </div>
+
+          <!-- Right Column: Account Info -->
+          <div class="col-md-6 signup-divider">
+            <span class="signup-section-label"><i class="fas fa-lock mr-1"></i> Account Details</span>
+
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-envelope"></span>
+              <input type="email" class="form-control" name="email" required placeholder="Email Address" value="<?php echo isset($email) ? $email : '' ?>">
+            </div>
+            <small id="msg"></small>
+
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-lock"></span>
+              <input type="password" class="form-control" name="password" <?php echo isset($id) ? '' : "required" ?> placeholder="Password">
+            </div>
+            <?php if(isset($id)): ?>
+            <small style="color:#9ca3af;font-size:12px;"><i>Leave blank if you don't want to change your password.</i></small>
+            <?php endif; ?>
+
+            <div class="input-icon-group mb-3">
+              <span class="input-icon fas fa-lock"></span>
+              <input type="password" class="form-control" name="cpass" <?php echo isset($id) ? '' : "required" ?> placeholder="Confirm Password">
+            </div>
+            <small id="pass_match" data-status=''></small>
+          </div>
+        </div>
+
+        <div class="row mt-3 align-items-center">
+          <div class="col-8">
+            <?php if(!isset($id)): ?>
             <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
               <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
+                I agree to the <a href="#">terms & conditions</a>
               </label>
             </div>
-			<?php endif; ?>
-
+            <?php endif; ?>
           </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block"><?php echo !isset($id) ? 'Register' : 'Update Account'; ?></button>
+          <div class="col-4 text-right">
+            <button type="submit" class="btn btn-signup"><?php echo !isset($id) ? 'Register' : 'Update'; ?></button>
           </div>
-          <!-- /.col -->
         </div>
       </form>
-
-	        <?php if(!isset($id)): ?>
-      <a href="login.php" class="text-center">I have account already</a>
-			<?php endif; ?>
     </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
-</div>
-<!-- /.register-box -->
-<script>
-	$(document).ready(function(){
-		
-	$('#manage-signup').submit(function(e){
-		e.preventDefault()
-		$('input').removeClass("border-danger")
-		start_load()
-		$('#msg').html('')
-		if($('#pass_match').attr('data-status') != 1){
-			if($("[name='password']").val() !=''){
-				$('[name="password"],[name="cpass"]').addClass("border-danger")
-				end_load()
-				return false;
-			}
-		}
-		$.ajax({
-			url:'admin/ajax.php?action=signup',
-			data: new FormData($(this)[0]),
-		    cache: false,
-		    contentType: false,
-		    processData: false,
-		    method: 'POST',
-		    type: 'POST',
-			success:function(resp){
-				if(resp == 1){
-					alert_toast('Data successfully saved.',"success");
-					setTimeout(function(){
-						location.replace('index.php?page=home')
-					},750)
-				}else if(resp == 2){
-					$('#msg').html("<div class='alert alert-danger'>Email already exist.</div>");
-					$('[name="email"]').addClass("border-danger")
-					end_load()
-				}
-			}
-		})
-	})
-		$('[name="password"],[name="cpass"]').keyup(function(){
-			var pass = $('[name="password"]').val()
-			var cpass = $('[name="cpass"]').val()
-			if(cpass == '' ||pass == ''){
-				$('#pass_match').attr('data-status','')
-			}else{
-				if(cpass == pass){
-					$('#pass_match').attr('data-status','1').html('<i class="text-success">Password Matched.</i>')
-				}else{
-					$('#pass_match').attr('data-status','2').html('<i class="text-danger">Password does not match.</i>')
-				}
-			}
-		})
-	})
 
+    <?php if(!isset($id)): ?>
+    <div class="signup-footer">
+      Already have an account? <a href="login.php">Sign in here</a>
+    </div>
+    <?php endif; ?>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#manage-signup').submit(function(e){
+    e.preventDefault();
+    $('input').removeClass("border-danger");
+    start_load();
+    $('#msg').html('');
+    if($('#pass_match').attr('data-status') != 1){
+      if($("[name='password']").val() != ''){
+        $('[name="password"],[name="cpass"]').addClass("border-danger");
+        end_load();
+        return false;
+      }
+    }
+    $.ajax({
+      url:'admin/ajax.php?action=signup',
+      data: new FormData($(this)[0]),
+      cache: false,
+      contentType: false,
+      processData: false,
+      method: 'POST',
+      type: 'POST',
+      success:function(resp){
+        if(resp == 1){
+          alert_toast('Account created successfully.','success');
+          setTimeout(function(){
+            location.replace('index.php?page=home');
+          }, 750);
+        } else if(resp == 2){
+          $('#msg').html("<div class='alert alert-danger'>Email already exists.</div>");
+          $('[name="email"]').addClass("border-danger");
+          end_load();
+        }
+      }
+    });
+  });
+
+  $('[name="password"],[name="cpass"]').keyup(function(){
+    var pass = $('[name="password"]').val();
+    var cpass = $('[name="cpass"]').val();
+    if(cpass == '' || pass == ''){
+      $('#pass_match').attr('data-status','');
+    } else {
+      if(cpass == pass){
+        $('#pass_match').attr('data-status','1').html('<i class="text-success" style="font-size:12px;">Passwords match</i>');
+      } else {
+        $('#pass_match').attr('data-status','2').html('<i class="text-danger" style="font-size:12px;">Passwords do not match</i>');
+      }
+    }
+  });
+});
 </script>
 <?php include 'footer.php' ?>
-
 </body>
 </html>

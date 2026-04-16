@@ -18,7 +18,7 @@
         }
         
         .contact-header p {
-            color: #666;
+            color: #9ca3af;
             font-size: 16px;
             max-width: 600px;
             margin: 0 auto;
@@ -34,12 +34,13 @@
         
         /* Contact Info Cards */
         .contact-info-card {
-            background: white;
+            background: #1a1e24;
+            border: 1px solid rgba(220, 38, 38, 0.15);
             border-radius: 20px;
             padding: 30px 20px;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             position: relative;
             overflow: hidden;
@@ -64,7 +65,8 @@
         
         .contact-info-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(192, 57, 43, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(220, 38, 38, 0.4);
         }
         
         .contact-icon {
@@ -92,22 +94,23 @@
         .contact-info-card h4 {
             font-size: 18px;
             font-weight: 600;
-            color: #c0392b;
+            color: #ef4444;
             margin-bottom: 10px;
         }
         
         .contact-info-card p {
             font-size: 14px;
-            color: #555;
+            color: #d1d5db;
             margin-bottom: 0;
             word-break: break-word;
         }
         
         /* Message Form Card */
         .message-form-card {
-            background: white;
+            background: #1a1e24;
+            border: 1px solid rgba(220, 38, 38, 0.15);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
             margin-top: 30px;
         }
@@ -133,6 +136,7 @@
         
         .form-body {
             padding: 30px;
+            background: #1a1e24;
         }
         
         .form-group {
@@ -141,7 +145,7 @@
         
         .form-group label {
             font-weight: 600;
-            color: #333;
+            color: #ef4444;
             margin-bottom: 8px;
             display: block;
         }
@@ -152,16 +156,24 @@
         }
         
         .form-control {
-            border: 2px solid #e0e0e0;
+            border: 1px solid rgba(220, 38, 38, 0.2);
             border-radius: 12px;
             padding: 12px 15px;
             transition: all 0.3s ease;
             font-size: 14px;
+            background: #111827;
+            color: #f3f4f6;
         }
         
         .form-control:focus {
-            border-color: #c0392b;
-            box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.1);
+            border-color: #dc2626;
+            box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.15);
+            background: #1f2937;
+            color: #fff;
+        }
+        
+        .form-control::placeholder {
+            color: #6b7280;
         }
         
         textarea.form-control {
@@ -189,7 +201,8 @@
         .services-section {
             margin-top: 60px;
             padding-top: 40px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #111827 0%, #1a1e24 100%);
+            border: 1px solid rgba(220, 38, 38, 0.1);
             border-radius: 30px;
             padding: 40px;
         }
@@ -202,7 +215,7 @@
         .section-title h3 {
             font-size: 36px;
             font-weight: 800;
-            color: #1a1a1a;
+            color: #f3f4f6;
             margin-bottom: 15px;
         }
         
@@ -212,7 +225,7 @@
         }
         
         .section-title p {
-            color: #666;
+            color: #9ca3af;
             font-size: 16px;
             max-width: 700px;
             margin: 0 auto;
@@ -225,18 +238,20 @@
         }
         
         .service-category-item {
-            background: white;
+            background: #1a1e24;
+            border: 1px solid rgba(220, 38, 38, 0.15);
             border-radius: 20px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             position: relative;
         }
         
         .service-category-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(192, 57, 43, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(220, 38, 38, 0.4);
         }
         
         .service-image {
@@ -277,14 +292,14 @@
         .service-category-item h5 {
             font-size: 18px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #f3f4f6;
             margin: 15px 0 10px;
             text-align: center;
         }
         
         .service-description {
             font-size: 13px;
-            color: #666;
+            color: #9ca3af;
             line-height: 1.6;
             margin-bottom: 15px;
             text-align: center;
@@ -296,7 +311,7 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid rgba(220, 38, 38, 0.1);
             margin-top: 10px;
         }
         
